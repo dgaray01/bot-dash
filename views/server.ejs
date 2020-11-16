@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="/style2.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navlogo">
+       <img style="margin-top: 10px"
+          src="<%= avatar %>"
+          alt="Logged in as <%= username %>">
+        <text onclick="alert"><%= server.name %> </text>
+      </div>
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+
+            <div class="logout button" href="/auth/logout" onclick="location.href='/auth/logout'">
+              Logout
+            </div>
+
+            <div class="switch button" href="/" onclick="location.href='/'">
+                Swtich Server
+              </div>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <section>
+    <div class="container">
+      <section class="body-home">
+        <div class="card">
+          <div class="title">Bot Settings</div>
+          <subtitle>Cambiar nick</subtitle>
+          <description>Cambia el nick del bot en el servidor</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/change-nickname">
+          <input type="text" placeholder="Bot"  autocomplete="off" name="nickname" class="col-12 form-control" pattern=".{1,32}" maxlength="32" id="__BVID__103"><button type="submit" class="sendButton">Enviar</button>              
+            </form>
+        </section>
+
+
+        <subtitle>Activar / Desactivar Moderacion</subtitle>
+        <description>Activa o desactiva los comandos de moderacion</description>
+        <section class="formulario"> 
+          <form method="POST" action="/<%=server.id%>/mod-cmd">
+          <select name="mod" id="mod">
+            <option value="on">Activar</option>
+            <option value="off">Desactivar</option>
+           </select><button type="submit" class="sendButton">Enviar</button>
+</form>
+        </section>
+
+<subtitle>Agregar prefix</subtitle>
+<description>Agrega un prefix al servidor.</description>
+<section class="formulario"> 
+  <form method="POST" action="/<%=server.id%>/add-prefix">
+<input type="text" placeholder="Prefix"  autocomplete="off" name="prefix" class="col-12 form-control" pattern=".{1,32}" maxlength="5" id="__BVID__103"><button type="submit" class="sendButton">Agregar</button>              
+  </form>
+</section>
+
+ 
+          <div class="title">Giveaway</div>
+          <subtitle>Crear Giveaway</subtitle>
+          <description>Crea un giveaway en el servidor.</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/giveaway-create">
+              <select name="canal" id="canal" style="width: 3cm;">
+                <% guild.channels.cache.filter(ch => ch.type === 'text').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>">#<%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+               </select> <input style="width: 3.6cm;" type="number" placeholder="Tiempo"  autocomplete="off" name="tiempo" class="col-12 form-control" pattern=".{1,32}" maxlength="10" id="__BVID__103">
+               <select name="type" id="type" style="width: 3cm;">
+                <option value="s">Segundos</option>
+                <option value="m">Minutos</option>
+                <option value="h">Horas</option>
+               </select>
+              </select> <input style="width: 3.6cm;" type="number" placeholder="Ganadores"  autocomplete="off" name="ganadores" class="col-12 form-control" pattern=".{1,32}" maxlength="10" id="__BVID__103">
+            </select> <input style="width: 6cm;" type="text" placeholder="Premio"  autocomplete="off" name="premio" class="col-12 form-control" pattern=".{1,32}" maxlength="250" id="__BVID__103"> 
+              <button type="submit" class="sendButton">Crear</button>
+            </form>
+          </section>
+
+
+          <div class="title">Logs</div>
+          <subtitle>Canal de Logs</subtitle>
+          <description>Configura el canal donde se enviaran los logs</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/logs-channel">
+              <select name="canal" id="canal">
+          <% guild.channels.cache.filter(ch => ch.type === 'text').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>">#<%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select> <button type="submit" class="sendButton">Agregar</button>
+            </form>
+          </section>
+          <div class="title">Moderación</div>
+          <subtitle>Canal de reportes</subtitle>
+          <description>Configura el canal de reportes del servidor</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/report-channel">
+              <select name="canal" id="canal">
+               <% guild.channels.cache.filter(ch => ch.type === 'text').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>">#<%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select> <button type="submit" class="sendButton">Agregar</button>
+            </form>
+          </section>
+          <subtitle>Lock Channel</subtitle>
+          <description>Bloquea un canal para que no se pueda ver por todos</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/lock-channel">
+              <select name="canal" id="canal">
+              <% guild.channels.cache.filter(ch => ch.type === 'text').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>">#<%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select> <button type="submit" class="sendButton">Agregar</button>
+            </form>
+          </section>
+          <subtitle>UnLock Channel</subtitle>
+          <description>Desbloquea un canal para que se pueda ver por todos</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/unlock-channel">
+              <select name="canal" id="canal">
+                <% guild.channels.cache.filter(ch => ch.type === 'text').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>">#<%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select> <button type="submit" class="sendButton">Agregar</button>
+            </form>
+          </section>
+          <subtitle>Crear ticket</subtitle>
+          <description>Elije un canal donde se mandara un mensaje para crear tickets</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/ticket-channel">
+              <select name="canal" id="canal" style="width: 6cm;">
+                <% guild.channels.cache.filter(ch => ch.type === 'text').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>">#<%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select>
+              <select name="categoria" id="categoria" style="width: 4cm;">
+                <% guild.channels.cache.filter(ch => ch.type === 'category').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>"><%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select>
+                         <select name="role" id="role" style="width: 4cm;">
+                <% guild.roles.cache.map(lc => {%>
+                <option value="<%=lc.id %>"><%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select>
+              <input style="width: 6cm;" type="text" placeholder="Titulo"  autocomplete="off" name="titulo" class="col-12 form-control" pattern=".{1,32}" maxlength="300" id="__BVID__103">
+              <input style="width: 6cm;" type="text" placeholder="Descripcion del ticket."  autocomplete="off" name="titulo2" class="col-12 form-control" pattern=".{1,32}" maxlength="200" id="__BVID__103">
+              
+              <button type="submit" class="sendButton">Crear</button>
+            </form>
+          </section>
+          <div class="title">Encuesta</div>
+          <subtitle>Crear Encuesta</subtitle>
+          <description>Crea una encuesta en un canal seleccionado.</description>
+          <section class="formulario"> 
+            <form method="POST" action="/<%=server.id%>/poll-channel">
+              <select name="canal" id="canal" style="width: 6cm;">
+                <% guild.channels.cache.filter(ch => ch.type === 'text').filter(p => p.permissionsFor(client.user).has('SEND_MESSAGES') && p.permissionsFor(client.user).has('READ_MESSAGES')).map(lc => {%>
+                <option value="<%=lc.id %>">#<%=lc.name %></option>
+                      <%   
+                      });
+                      %>
+              </select>
+              <input style="width: 7cm;" type="text" placeholder="Encuesta"  autocomplete="off" name="titulo" class="col-12 form-control" pattern=".{1,32}" maxlength="300" id="__BVID__103">
+              <button type="submit" class="sendButton">Crear</button>
+            </form>
+          </section>
+        </div>
+
+
+
+</section>
+</div>
+</section>
+
+      </section>
+
+
+      
+</body>
+
+<footer>
+
+
+
+</footer>
+
+</html>

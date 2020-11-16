@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard!</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navlogo">
+        <img style="margin-top: 10px"
+          src="<%= avatar %>"
+          alt="Logged in as <%= username %>">
+        <text style="margin-top: 10px" onclick="alert">Logged in as <%= username %></text>
+      </div>
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+
+            <div class="logout button" href="/auth/logout"onclick="location.href='/auth/logout'">
+              Logout
+            </div>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <section>
+    <div class="container">
+      <section class="body-home">
+        
+                          <% datoServer.map(dato => { %>
+        <% if(dato.owner == true){ %>
+        <div class="card">
+          <div class="title"><%=dato.name%> <div class= "crown"><i class="fas fa-crown"></i></div>
+          </div>
+          <a class="btn" href="./server/<%=dato.id%> ">Ver</a>
+        </div>
+        <%} else { %>
+                <div class="card">
+          <div class="title"><%=dato.name%> 
+          </div>
+          <a class="btn" href="./server/<%=dato.id%> ">Ver</a>
+        </div>
+        
+        <% } %>
+         <% }) %>
+
+
+      </section>
+
+
+</body>
+
+<footer>
+
+
+
+</footer>
+
+</html>

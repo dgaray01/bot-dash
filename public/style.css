@@ -1,0 +1,83 @@
+.logout{
+background-color: red;
+color: white;
+
+}
+
+.navlogo img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: white;
+}
+
+.navbar-brand{
+    margin-left: 15px;
+}
+
+.navlogo text{
+    font-size: 30px;
+   color: #7289DA;
+}
+
+.navbar{
+background-color: #23272A;
+
+}
+
+html{
+    background-color: #2C2F33;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #202225;
+    padding: 20px;
+    flex-basis: 33.33%;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+  
+  .card:nth-child(3) {
+    margin-top: 10px;
+    margin-left: 5px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .card .btn {
+    background-color: #7289da;
+    border-radius: 3px;
+    width: 50%;
+    color: #23272A;
+    margin-top: 20px;
+  }
+  
+  .card .btn:hover {
+    background-color: #36393f;
+    transition: 0.2s;
+  }
+  .body-home {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }  
+
+  .card .title{
+    font-size: 30px;
+   color: #7289DA;   
+    display: inline-block;
+  }
+
+.crown {
+  color: yellow;
+  font-size: 15px;
+  display: inline-block;
+  
+}
