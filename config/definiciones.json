@@ -1,0 +1,58 @@
+{
+  "comandos": {
+    "name": "Sin categorizar",
+    "description": "Sin categorizar",
+    "hide": true
+  },
+  "config": {
+    "name": "Configuración",
+    "description": "Configura el bot con estos comandos"
+  },
+  "fun": {
+    "name": "Diversión",
+    "description": "Comandos para divertirte con el bot"
+  },
+  "level": {
+    "name": "Niveles",
+    "description": "Estos comandos configuran el sistema de niveles del bot para tu servidor"
+  },
+  "logging": {
+    "name": "Logeos/Registros",
+    "description": "Registra todo lo que pasa en tu servidor con este comando"
+  },
+  "mod": {
+    "name": "Moderación",
+    "description": "Comandos útiles para moderación y administración del servidor"
+  },
+  "owner": {
+    "name": "Propietario",
+    "description": "Solo el propietario del bot puede usar estos comandos",
+    "hide": true
+  },
+  "test": {
+    "name": "Comandos de testeo",
+    "description": "Pruebas de bot",
+    "hide": true
+  },
+  "giveaway": {
+    "name": "Giveaway",
+    "description": "Comandos de Giveaway"
+  },
+  "music": {
+    "name": "Musica",
+    "description": "Comandos para escuchar musica en un canal de voz."
+  },
+  "ticket": {
+    "name": "Sistema de tickets",
+    "description": "Configura y crea canales para  soporte"
+  },
+  "utilities": {
+    "name": "Utilidades",
+    "description": "Comandos que pueden resultar utiles en tu servidor"
+  }
+  ,
+  "role": {
+    "name": "Role",
+    "description": "Configura autoroles, timed roles y mas opciones para roles"
+  }
+}
